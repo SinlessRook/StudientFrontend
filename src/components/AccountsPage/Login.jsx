@@ -40,7 +40,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-gradient-to-tr from-[#7493A8] to-[#fff8ef]">
+    <div className="flex items-center justify-center h-[620px] bg-gradient-to-tr from-[#7493A8] to-[#fff8ef]">
       <div className="bg-white rounded-lg shadow-lg p-8 w-96 text-center">
         <div className="mb-6">
           <img

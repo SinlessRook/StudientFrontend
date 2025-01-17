@@ -24,10 +24,10 @@ const Navbar = () => {
                 <div className='flex gap-4 text-lg'>
                     <h1
                         onClick={() => { navigate('/schedule') }}
-                        className={`relative group hover:cursor-pointer  ${location.pathname==='/schedule' ? `font-semibold` : ''}`}>
+                        className={`relative group hover:cursor-pointer  ${location.pathname === '/schedule' ? `font-semibold` : ''}`}>
                         Schedule
                         <span
-                            className={`absolute top-8 left-0 w-0 h-[2px] bg-white transition-all duration-500 group-hover:w-full ${location.pathname==='/schedule' ? `w-full` : ''}`}
+                            className={`absolute top-8 left-0 w-0 h-[2px] bg-white transition-all duration-500 group-hover:w-full ${location.pathname === '/schedule' ? `w-full` : ''}`}
                         ></span>
                     </h1>
 
@@ -38,9 +38,12 @@ const Navbar = () => {
                         ></span>
                     </h1>
 
-                    <h1 class="relative group hover:cursor-pointer">Forum
+                    <h1
+                        onClick={() => { navigate('/forum') }}
+                        className={`relative group hover:cursor-pointer  ${location.pathname === '/forum' ? `font-semibold` : ''}`}>
+                        Forum
                         <span
-                            class="absolute top-8 left-0 w-0 h-[2px] bg-white transition-all duration-500 group-hover:w-full"
+                            className={`absolute top-8 left-0 w-0 h-[2px] bg-white transition-all duration-500 group-hover:w-full ${location.pathname === '/forum' ? `w-full` : ''}`}
                         ></span>
                     </h1>
                 </div>
@@ -62,7 +65,7 @@ const Navbar = () => {
                         </> :
                         <>
                             <button
-                            onClick={()=>{navigate('/login')}}
+                                onClick={() => { navigate('/login') }}
                                 className="relative 
                     h-12
                     w-32

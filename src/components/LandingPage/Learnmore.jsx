@@ -3,10 +3,12 @@ import img from '../../assets/BackgroundLandingPage.jpeg'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 const Learnmore = () => {
   const [selectedText, setselectedText] = useState("Consistency Is The KEY")
   const [imgAddress, setimgAddress] = useState("https://img.freepik.com/premium-vector/business-man-pushes-recycling-symbol-up-hill-trying-create-company-help-fight-eco-problems_198530-7404.jpg?uid=R182416792&ga=GA1.1.321317949.1696341147&semt=ais_hybrid")
   const [animationKey, setAnimationKey] = useState(0);
+  const navigate = useNavigate();
   useEffect(() => {
     setAnimationKey((prevKey) => prevKey + 1);
   }, [selectedText])
@@ -155,6 +157,7 @@ const Learnmore = () => {
           Sign Up
         </button>
         <button
+        onClick={() => { navigate('/login') }}
           className="flex items-center justify-center w-auto px-6 py-2.5 text-center text-white duration-200 
          bg-black border-2 border-black rounded-full nline-flex hover:bg-transparent px-16
          hover:border-black hover:text-black focus:outline-none focus-visible:outline-black text-3xl focus-visible:ring-black" href="#">

@@ -4,6 +4,8 @@ import Dashboard from "./pages/dashboard";
 import LandingPage from "./pages/landingPage";
 import Navbar from "./components/LandingPage/Navbar";
 import Login from "./components/AccountsPage/Login";
+import ForumPage from "./pages/ForumPage";
+import SignUp from "./components/AccountsPage/SignUp";
 
 const AppRouter = () => {
     return (
@@ -12,7 +14,9 @@ const AppRouter = () => {
             <Routes>
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<SignUp />} />
                 <Route path="/schedule" element={<Dashboard />} />
+                <Route path="/forum" element={<ForumPage/>}/>
             </Routes>
         </Router>
     );
