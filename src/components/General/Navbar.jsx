@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import logo from '../../assets/codecrafters.svg'
-import ThemeSwitcher from './ThemeSwitch'
+import ThemeSwitcher from '../LandingPage/ThemeSwitch'
 import { motion } from 'framer-motion'
 import { GlobalContext } from '../../Context/GlobalContext';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -30,11 +30,13 @@ const Navbar = () => {
                             className={`absolute top-8 left-0 w-0 h-[2px] bg-white transition-all duration-500 group-hover:w-full ${location.pathname === '/schedule' ? `w-full` : ''}`}
                         ></span>
                     </h1>
+                    <h1
+                        onClick={() => { navigate('/prepare') }}
+                        className={`relative group hover:cursor-pointer  ${location.pathname === '/prepare' ? `font-semibold` : ''}`}>
 
-                    <h1 class="relative group hover:cursor-pointer">
                         Prepare
                         <span
-                            class="absolute top-8 left-0 w-0 h-[2px] bg-white transition-all duration-500 group-hover:w-full"
+                            className={`absolute top-8 left-0 w-0 h-[2px] bg-white transition-all duration-500 group-hover:w-full ${location.pathname === '/prepare' ? `w-full` : ''}`}
                         ></span>
                     </h1>
 

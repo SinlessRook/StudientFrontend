@@ -1,13 +1,14 @@
 import React from 'react'
+import Loader from '../components/General/Loader'
 
-const prepare = () => {
+const Prepare = () => {
   return (
     <>
     {/* Write your contents here */}
-    
+    <Loader/>
     
     </>
   )
 }
 
-export default prepare
+export default Prepare
