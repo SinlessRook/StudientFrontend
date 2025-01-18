@@ -3,21 +3,42 @@ import React, { useState } from 'react';
 
 
 const AddQuestionForm = (props) => {
-    const [title, setTitle] = useState('');
+    const [username, setUsername] = useState('');
     const [description, setDescription] = useState('');
     const [image, setImage] = useState(null);
     const [flair, setFlair] = useState('general');
     const [isModalOpen, setIsModalOpen] = useState(false);
     const setIsOpen = props.setIsOpen
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Your form submission logic here
-        // For example, log data to the console
-        console.log({ title, description, image, flair });
-        setIsModalOpen(true);  // Open modal on form submission
+    
+        const formData = new FormData();
+        formData.append('description', description);
+        formData.append('flair', flair);
+        formData.append('created_by', username); // Replace with dynamic username
+        if (image) {
+            formData.append('image', image);
+        }
+    
+        try {
+            const response = await fetch('http://127.0.0.1:8000/forum/posts/', {
+                method: 'POST',
+                body: formData, // Send FormData
+            });
+    
+            if (!response.ok) {
+                throw new Error('Failed to submit question');
+            }
+    
+            const data = await response.json();
+            console.log(data.message); // Success message from the backend
+            setIsModalOpen(true); // Open the modal
+        } catch (error) {
+            alert(error.message); // Display error message
+        }
     };
-
+    
     return (
         <div className="mx-auto p-8 bg-white rounded-lg shadow-lg w-1/3">
             <button
@@ -28,18 +49,7 @@ const AddQuestionForm = (props) => {
             </button>
             <h1 className="text-2xl text-center mb-6">Add a New Question</h1>
             <form onSubmit={handleSubmit}>
-                <div className="mb-4">
-                    <label htmlFor="title" className="block text-lg font-medium mb-2">Title:</label>
-                    <input
-                        type="text"
-                        id="title"
-                        className="w-full p-3 border border-gray-300 rounded-lg"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                        placeholder="Enter your question title"
-                        required
-                    />
-                </div>
+               
 
                 <div className="mb-4">
                     <label htmlFor="description" className="block text-lg font-medium mb-2">Description:</label>
@@ -67,7 +77,7 @@ const AddQuestionForm = (props) => {
                 <div className="mb-4">
                     <label htmlFor="flairs" className="block text-lg font-medium mb-2">Select Flair:</label>
                     <select
-                        id="flairs"
+                        id="category"
                         className="w-full p-3 border border-gray-300 rounded-lg"
                         value={flair}
                         onChange={(e) => setFlair(e.target.value)}
@@ -75,11 +85,20 @@ const AddQuestionForm = (props) => {
                         <option value="general">General</option>
                         <option value="technical">Technical</option>
                         <option value="help">Help</option>
-                        <option value="physics">Physics</option>
-                        <option value="chemistry">Chemistry</option>
-                        <option value="maths">Maths</option>
-                        <option value="biology">Biology</option>
+                        <option value="Exam">Exam</option>
                     </select>
+                </div>
+
+                <div className="mb-4">
+                    <label htmlFor="username" className="block text-lg font-medium mb-2">Username:</label>
+                    <input
+                        type="text"
+                        id="username"
+                        className="w-full p-3 border border-gray-300 rounded-lg"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        required
+                    />
                 </div>
 
                 <button type="submit" className="w-full py-3 bg-teal-500 text-white rounded-lg hover:bg-teal-600">Submit Question</button>
