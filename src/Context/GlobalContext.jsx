@@ -4,8 +4,8 @@ export const GlobalContext = createContext();
 
 export const GlobalProvider = ({ children }) => {
   const [authTokens, setAuthTokens] = useState({
-    access: false,
-    refresh: false,
+    username: '',
+    password: '',
   });
 
   return (

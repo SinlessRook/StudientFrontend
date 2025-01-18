@@ -15,7 +15,9 @@ const AddQuestionForm = (props) => {
         // Your form submission logic here
         // For example, log data to the console
         console.log({ title, description, image, flair });
+        
         setIsModalOpen(true);  // Open modal on form submission
+        
     };
 
     return (

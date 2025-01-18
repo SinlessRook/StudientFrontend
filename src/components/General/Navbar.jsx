@@ -57,7 +57,7 @@ const Navbar = () => {
 
                 </div>
                 {
-                    (authTokens.access && authTokens.refresh) ?
+                    (authTokens.username!='' && authTokens.password != '') ?
                         <>
                             <figure className="size-8 z-[3] [&:where(:nth-child(2n))]:size-11 [&:where(:nth-child(2n))]:z-[4] [&:where(:not(:first-child):not(:last-child):not(:nth-child(2n)))]:size-16 [&:where(:not(:first-child):not(:last-child):not(:nth-child(2n)))]:z-[6] cursor-pointer bg-white relative rounded-full object-cover border border-solid border-zinc-300">
                                 <svg viewBox="0 0 256 256" fill="red">
