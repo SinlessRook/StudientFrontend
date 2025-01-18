@@ -31,7 +31,8 @@ const Navbar = () => {
                         ></span>
                     </h1>
 
-                    <h1 class="relative group hover:cursor-pointer">
+                    <h1 onClick={() => { navigate('/prepare') }}
+                        className={`relative group hover:cursor-pointer  ${location.pathname === '/prepare' ? `font-semibold` : ''}`}>                        
                         Prepare
                         <span
                             class="absolute top-8 left-0 w-0 h-[2px] bg-white transition-all duration-500 group-hover:w-full"
