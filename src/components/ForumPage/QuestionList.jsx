@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter, faSort } from '@fortawesome/free-solid-svg-icons';
 import Card from './Card';
+import QuestionDetails from './QuestionDetails';
 
 const QuestionList = () => {
   const [questions, setQuestions] = useState([]);
@@ -10,6 +11,7 @@ const QuestionList = () => {
   const [sortField, setSortField] = useState('created_at');
   const [sortOrder, setSortOrder] = useState('asc');
   const [loading, setLoading] = useState(true);
+  const [selectedQuestion, setSelectedQuestion] = useState(null);
 
   useEffect(() => {
     const fetchQuestions = async () => {
@@ -26,10 +28,13 @@ const QuestionList = () => {
         if (!response.ok) {
           throw new Error('Failed to fetch questions');
         }
+
         const data = await response.json();
-        setQuestions(data);
+        const validQuestions = data.filter((question) => question && question.description); // Filter valid questions
+        setQuestions(validQuestions);
       } catch (error) {
         console.error('Error fetching questions:', error);
+        setQuestions([]); // Reset state on error
       } finally {
         setLoading(false);
       }
@@ -78,18 +83,31 @@ const QuestionList = () => {
         </div>
       </div>
 
-      {/* Question Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {loading ? (
-          <p className="col-span-full text-center text-white">Loading questions...</p>
-        ) : questions.length === 0 ? (
-          <p className="col-span-full text-center text-white">No questions found.</p>
-        ) : (
-          questions.map((question) => (
-            <Card key={question.id} question={question} />
-          ))
-        )}
-      </div>
+      {/* Render Cards Only If Questions Exist */}
+      {!loading && questions.length > 0 && (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {questions.map((question) => (
+            <Card
+              key={question.id}
+              question={question}
+              onClick={() => setSelectedQuestion(question)} // Open details modal
+            />
+          ))}
+        </div>
+      )}
+
+      {/* Loading or No Questions Message */}
+      {loading ? (
+        <p className="text-center text-white">Loading questions...</p>
+      ) : questions.length === 0 ? null : null}
+
+      {/* Question Details Modal */}
+      {selectedQuestion && (
+        <QuestionDetails
+          question={selectedQuestion}
+          onClose={() => setSelectedQuestion(null)} // Close the modal
+        />
+      )}
     </div>
   );
 };
