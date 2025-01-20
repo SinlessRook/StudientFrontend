@@ -52,13 +52,42 @@ const QuestionDetails = ({ question, onClose }) => {
 
   return (
     <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white p-6 rounded-lg w-11/12 md:w-2/3 lg:w-1/2">
-        <h1 className="text-xl font-bold">{question.description}</h1>
-        <AnswerList answers={answers} />
-        <ActionButtons onClose={onClose} />
-        <AnswerForm questionId={question.id} onAddAnswer={handleAddAnswer} />
+  <div className="bg-white p-6 rounded-lg w-11/12 md:w-2/3 lg:w-1/2">
+    <div className="flex flex-col md:flex-row gap-4 items-start">
+      {/* Render the image and open-in-new-tab option */}
+      {question.image && (
+        <div className="flex flex-col items-center md:w-1/3">
+          <img
+            src={question.image}
+            alt="Question"
+            className="w-full max-h-48 object-cover rounded mb-2"
+          />
+          <a
+            href={question.image}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-blue-500 text-white px-4 py-2 rounded text-sm hover:bg-blue-600"
+          >
+            Open Image
+          </a>
+        </div>
+      )}
+
+      {/* Render the question description */}
+      <div className="flex-1">
+        <h1 className="text-xl font-bold">Query:</h1>
+        <p>{question.description}</p>
       </div>
     </div>
+
+    {/* Render other components */}
+    <AnswerList answers={answers} />
+    <ActionButtons onClose={onClose} />
+    <AnswerForm questionId={question.id} onAddAnswer={handleAddAnswer} />
+  </div>
+</div>
+
+  
   );
 };
 
