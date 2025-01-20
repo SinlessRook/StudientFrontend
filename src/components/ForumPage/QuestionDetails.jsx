@@ -27,7 +27,7 @@ const QuestionDetails = ({ question, onClose }) => {
 
   const handleAddAnswer = async (newAnswer) => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/forum/answers/add/', {
+      const response = await fetch('http://127.0.0.1:8000/forum/answer/add/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
