@@ -32,6 +32,7 @@ const PreparePage = () => {
       ) : (
         <Result
           frequencies={analysisData.frequencies}
+          repeated={analysisData.repeated}
           onAnalyzeAgain={handleAnalyzeAgain}
         />
       )}
