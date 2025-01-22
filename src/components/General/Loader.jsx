@@ -7,7 +7,7 @@ const Loader = () => {
         initial={{ opacity: 1 }}
         animate={{ opacity: 0.9 }}
         transition={{ duration: 1, delay: 0.5, ease: 'easeInOut', repeat: Infinity, repeatType: 'reverse' }} 
-        className="absolute top-0 left-0 bottom-0 right-0 w-screen h-screen bg-black bg-opacity-90 flex-col gap-4 flex items-center justify-center z-50">
+        className="fixed top-0 left-0 bottom-0 right-0 w-full h-full bg-black bg-opacity-90 flex-col gap-4 flex items-center justify-center z-50 m-0 p-0">
             <motion.div
                 initial={{ opacity: 0.8, boxShadow: '0 0 10px #7CEBB8' }}
                 animate={{ opacity: 1, boxShadow: '0 0 20px #7CEBB8' }}

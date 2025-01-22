@@ -105,7 +105,7 @@ const LoginPage = () => {
         </form>
         <p className="text-sm text-gray-600 mt-4">
           Don't have an account?{' '}
-          <a onClick={() => navigate('/signup')} className="text-teal-400 hover:underline">
+          <a onClick={() => navigate('/signup')} className="text-teal-400 hover:underline cursor-pointer">
             Sign Up
           </a>
         </p>

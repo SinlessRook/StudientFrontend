@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { delay, motion } from "framer-motion";
 import { GlobalContext } from "../../Context/GlobalContext";
 import Loader from "../General/Loader";
+import { useNavigate } from "react-router-dom";
 
 const Timetable = ({
   tasks,
@@ -17,6 +18,8 @@ const Timetable = ({
   const server = "http://127.0.0.1:8000/";
   const {authTokens} = useContext(GlobalContext)
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  console.log(tasks);
   // Send The TimeTable
   const sendTimeTable = async () => {
     setLoading(true);
@@ -47,6 +50,7 @@ const Timetable = ({
       return response.json();
     });
     setLoading(false);
+    navigate('/schedule');
   }
 
   // Find id from task name
@@ -54,7 +58,7 @@ const Timetable = ({
   const findTaskId = (taskName) => {
     for (const id in tasks) {
       const task = getShortForm(tasks[id]["name"]);
-      console.log(task)
+      console.log(tasks)
       if (task === taskName) {
         return tasks[id]["id"];
       }

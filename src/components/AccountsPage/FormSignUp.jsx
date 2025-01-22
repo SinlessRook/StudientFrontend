@@ -38,67 +38,49 @@ const SignUpForm = ({ setStep, setTasks }) => {
       })
     } ).then((response) => {
       if (!response.ok) {
-        setError('Username already exists');
+        setError(response.statusText);
         setLoading(false);
         return;
       }
     }).then((data) => {
       setAuthTokens({ username: username, password: password, });
+      
     })
     .catch((error) => {
       setError(error.message);
-      setLoading(false);
-    });
-
-    // Step 3 - Add Subjects
-    await fetch(server+'scheduler/addSubjects_1/',
-      {
-        method: 'POST',
-        headers: {'content-type': 'application/json'},
-        body: JSON.stringify({
-          username: username,
-          password: password})
-      }).then((response) => {
+      setLoading(false); });
+    // Step 3 Fetch Subjects
+    await fetch(server + 'scheduler/getAllSubjects/', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({
+        username: username,
+        password: password
+      })
+    })
+      .then((response) => {
         if (!response.ok) {
-          setError('Error adding subjects');
+          setError(response.statusText);
           setLoading(false);
-          setStep(2);
+          return;
         }
+        return response.json();  // Parse the response as JSON
+      })
+      .then((data) => {
+        console.log(data);
+        setTasks(data.subjects);  // Store the data in the state variable
       })
       .catch((error) => {
         setError(error.message);
         setLoading(false);
-        setStep(2);
       })
-
-    // Step 4 - Add Tasks
-    await fetch(server+'scheduler/getAllSubjects/',
-      {
-        method: 'POST',
-        headers: {'content-type': 'application/json'},
-        body: JSON.stringify({
-          username: username,
-          password: password})
-      }
-    ).then((response) => {
-      if (!response.ok) {
-        setError('Error getting subjects');
+      .finally(() => {
         setLoading(false);
         setStep(2);
-        return
-      }
-      return response.json();
-    }).then((data) => {
-      setTasks(data['subjects']);
-      setLoading(false);
-      setStep(2);
-    }).catch((error) => {
-      setError(error.message);
-      setLoading(false);
-      setStep(2);
-    }).finally(() => {
-      setLoading(false);
-    });
+      });
+    
+
+    
   }
 
   return (
@@ -168,6 +150,7 @@ const SignUpForm = ({ setStep, setTasks }) => {
             Sign in
           </a>
         </p>
+        <br />
       </div>
     </>
   );

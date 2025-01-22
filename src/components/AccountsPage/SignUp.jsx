@@ -4,42 +4,9 @@ import Timetable from './Timetable';
 import FocusSubjects from './FocusSubjects';
 
 const SignUp = () => {
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(1);
   
-  const [tasks, setTasks] = useState([
-    {
-      "id": 49,
-      "name": "Data Structures"
-  },
-  {
-      "id": 50,
-      "name": "Discrete Mathematical Structures"
-  },
-  {
-      "id": 51,
-      "name": "Logic System Design"
-  },
-  {
-      "id": 52,
-      "name": "Object Oriented Programming Using Java"
-  },
-  {
-      "id": 53,
-      "name": "Sustainable Engineering"
-  },
-  {
-      "id": 54,
-      "name": "OOP Lab"
-  },
-  {
-      "id": 55,
-      "name": "Data Structures Lab"
-  },
-  {
-      "id": 56,
-      "name": "Design & Engineering"
-  }
-]);
+  const [tasks, setTasks] = useState([]);
   const [columns, setColumns] = useState(5);
   const [rows, setRows] = useState(5);
   const [droppedTasks, setDroppedTasks] = useState(
@@ -74,7 +41,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="bg-gradient-to-tr from-[#7493A8] to-[#fff8ef] pt-8 pb-10 flex justify-center items-center overflow-hidden">
+    <div className="bg-gradient-to-tr from-[#7493A8] to-[#fff8ef] pt-8 pb-10 flex justify-center items-center overflow-hidden h-full">
       {step === 1 && <SignUpForm setStep={setStep} setTasks={setTasks} />}
       {step === 2 && (
         <Timetable

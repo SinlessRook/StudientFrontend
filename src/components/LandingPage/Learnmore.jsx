@@ -151,6 +151,7 @@ const Learnmore = () => {
       </div>
       <div className="flex px-6 gap-4 item-center justify-center">
         <button
+        onClick={()=>{navigate('/signup')}}
           className="flex items-center justify-center w-auto px-6 py-2.5 text-center text-white duration-200 
          bg-black border-2 border-black rounded-full nline-flex hover:bg-transparent px-16
          hover:border-black hover:text-black focus:outline-none focus-visible:outline-black text-3xl focus-visible:ring-black" href="#">
