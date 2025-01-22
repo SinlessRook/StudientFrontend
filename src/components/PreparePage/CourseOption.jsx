@@ -13,11 +13,12 @@ const CourseDropdown = ({ courseCode, setCourseCode }) => {
           throw new Error("Failed to fetch courses");
         }
         const data = await response.json();
-        // Ensure data is an array
-        if (Array.isArray(data)) {
-          setCourses(data);
+
+        // Validate if "courses" exists and is an array
+        if (data.courses && Array.isArray(data.courses)) {
+          setCourses(data.courses);
         } else {
-          throw new Error("Invalid data format: Expected an array");
+          throw new Error("Invalid response format: 'courses' is missing or not an array");
         }
       } catch (err) {
         setError(err.message);
