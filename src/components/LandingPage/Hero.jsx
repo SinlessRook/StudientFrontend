@@ -25,7 +25,7 @@ const Hero = (props) => {
                 }}
                 className='text-5xl font-bold leading-[61px] bg-gradient-to-r from-[#01355C] via-[#AD434E] to-[#AD434E] bg-clip-text text-transparent'>
                     
-                    Study Plan Succeed
+                    Study. Plan. Succeed.
                 </motion.h1>
                 <motion.div 
                 initial={{ opacity: 0, y: 30,scale: 0.5}}
