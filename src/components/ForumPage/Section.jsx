@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PopUpExample from './Answer';
 
-const Section = ({ setFlair,setsubmit}) => {
+const Section = ({ setFlair,setsubmit,flair}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleFlairChange = (flair) => {
@@ -20,27 +20,31 @@ const Section = ({ setFlair,setsubmit}) => {
         </button>
       </header>
       <div className="flex gap-2 mt-5">
-        <button
-          onClick={() => handleFlairChange('General')}
-          className="border border-black rounded-2xl px-6 py-1"
-        >
+      <button
+  onClick={() => handleFlairChange('general')}
+  className={`border rounded-2xl border-black px-6 
+  py-1 ${flair === 'general' ? 'text-white bg-black' : ''}`}
+>
           General Discussion
         </button>
         <button
-          onClick={() => handleFlairChange('Technical')}
-          className="border border-black rounded-2xl px-6 py-1"
+          onClick={() => handleFlairChange('technical')}
+          className={`border rounded-2xl border-black px-6 
+  py-1 ${flair === 'technical' ? 'text-white bg-black' : ''}`}
         >
           Technical
         </button>
         <button
-          onClick={() => handleFlairChange('Help')}
-          className="border border-black rounded-2xl px-6 py-1"
+          onClick={() => handleFlairChange('help')}
+          className={`border rounded-2xl border-black px-6 
+  py-1 ${flair === 'help' ? 'text-white bg-black' : ''}`}
         >
           Help
         </button>
         <button
-          onClick={() => handleFlairChange('Exam')}
-          className="border border-black rounded-2xl px-6 py-1"
+          onClick={() => handleFlairChange('exam')}
+          className={`border rounded-2xl border-black px-6 
+  py-1 ${flair === 'exam' ? 'text-white bg-black' : ''}`}
         >
           Exam Doubts
         </button>

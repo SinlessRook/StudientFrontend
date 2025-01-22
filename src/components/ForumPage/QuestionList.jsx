@@ -4,10 +4,9 @@ import { faFilter, faSort } from '@fortawesome/free-solid-svg-icons';
 import Card from './Card';
 import QuestionDetails from './QuestionDetails';
 
-const QuestionList = ({ submit }) => {
+const QuestionList = ({ submit,flair }) => {
   const [questions, setQuestions] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
-  const [flair, setFlair] = useState('');
   const [sortField, setSortField] = useState('created_at');
   const [sortOrder, setSortOrder] = useState('asc');
   const [loading, setLoading] = useState(true);

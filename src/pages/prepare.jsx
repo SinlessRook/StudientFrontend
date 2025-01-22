@@ -26,7 +26,7 @@ const PreparePage = () => {
   };
 
   return (
-    <div className="min h-screen bg-gradient-to-tr from-[#7493A8] to-[#fff8ef]  px-10 py-8 text-[#2A2A31]">
+    <div className="min-h-screen bg-gradient-to-tr from-[#7493A8] to-[#fff8ef]  px-10 py-8 text-[#2A2A31]">
       {!analysisData ? (
         <AnalyzeForm onSubmit={handleAnalysisSubmit} />
       ) : (
