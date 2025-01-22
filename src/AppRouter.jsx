@@ -6,7 +6,7 @@ import Navbar from "./components/General/Navbar";
 import Login from "./components/AccountsPage/Login";
 import ForumPage from "./pages/ForumPage";
 import SignUp from "./components/AccountsPage/SignUp";
-import Prepare from "./pages/prepare";
+import PreparePage from "./pages/prepare";
 
 const AppRouter = () => {
     return (
@@ -19,6 +19,7 @@ const AppRouter = () => {
                 <Route path="/schedule" element={<Dashboard />} />
                 <Route path="/prepare" element={<Prepare/>} />
                 <Route path="/forum" element={<ForumPage/>}/>
+                <Route path="/prepare" element={<PreparePage />} />
             </Routes>
         </Router>
     );
