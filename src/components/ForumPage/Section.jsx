@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PopUpExample from './Answer';
 
-const Section = ({ setFlair }) => {
+const Section = ({ setFlair,setsubmit}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleFlairChange = (flair) => {
@@ -45,7 +45,7 @@ const Section = ({ setFlair }) => {
           Exam Doubts
         </button>
       </div>
-      {isOpen && <PopUpExample setIsOpen={setIsOpen} />}
+      {isOpen && <PopUpExample setIsOpen={setIsOpen} setsubmit={setsubmit}/>}
     </>
   );
 };

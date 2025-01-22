@@ -4,7 +4,7 @@ import { faFilter, faSort } from '@fortawesome/free-solid-svg-icons';
 import Card from './Card';
 import QuestionDetails from './QuestionDetails';
 
-const QuestionList = () => {
+const QuestionList = ({ submit }) => {
   const [questions, setQuestions] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [flair, setFlair] = useState('');
@@ -41,7 +41,7 @@ const QuestionList = () => {
     };
 
     fetchQuestions();
-  }, [searchQuery, flair, sortField, sortOrder]);
+  }, [searchQuery, flair, sortField, sortOrder,submit]);
 
   return (
     <div className="p-8">
