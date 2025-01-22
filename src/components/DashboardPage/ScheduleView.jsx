@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import Loader from "../General/Loader";
 import { GlobalContext } from "../../Context/GlobalContext";
 
-const ScheduleView = () => {
+const ScheduleView = ({category}) => {
   const [UpcomingEvents, setUpcomingEvents] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const { authTokens } = useContext(GlobalContext);
@@ -13,7 +13,7 @@ const ScheduleView = () => {
     const fetchUpcomingEvents = async () => {
       try {
         const response = await fetch(
-          "http://127.0.0.1:8000/scheduler/getSchedule/?hrs="+hours+"&min="+min+"",
+          "http://127.0.0.1:8000/scheduler/getSchedule/?hrs="+hours+"&min="+min+"+&category="+category,
           {
             method: "POST",
             headers: {
@@ -25,8 +25,7 @@ const ScheduleView = () => {
             }),
           }
         );
-        const data = (await response.json()).data.subject_details;
-        console.log(data);
+        const data =(await response.json()).data
         if (data) {
           setUpcomingEvents(data);
         }
@@ -37,8 +36,7 @@ const ScheduleView = () => {
       }
     };
     fetchUpcomingEvents();
-  }, [authTokens, hours, min]);
-
+  }, [authTokens, hours, min, category]);
   return (
     <>
       {isLoading && <Loader />}
