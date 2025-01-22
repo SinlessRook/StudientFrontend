@@ -17,10 +17,11 @@ const Card = ({ question, onClick }) => {
         <div className="group-hover:-left-2 bg-transparent -top-24 -left-12 absolute shadow-sky-800 shadow-inner rounded-xl transition-all ease-in-out group-hover:duration-1000 duration-1000 w-64 h-64" />
         <div className="group-hover:top-44 bg-transparent top-24 left-12 absolute shadow-sky-500 shadow-inner rounded-xl transition-all ease-in-out group-hover:duration-1000 duration-1000 w-4 h-4" />
         <div className="w-full h-full shadow-xl shadow-neutral-900 p-3 bg-neutral-600 opacity-50 rounded-xl flex-col gap-2 flex justify-center">
-          <span className="font-bold text-xl italic text-white">{question.description}</span>
+          <span className="absolute top-1 left-1/2 transform -translate-x-1/2 text-white font-bold text-xl italic py-4">{question.title}</span>
           <p className="text-white">
             {question.description}
           </p>
+          <span className="absolute bottom-5 right-3 px-4 text-white">By: {question.created_by}</span>
         </div>
       </div>
     );

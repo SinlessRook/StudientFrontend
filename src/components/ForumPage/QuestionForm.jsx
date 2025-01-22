@@ -1,19 +1,24 @@
 // src/components/AddQuestionForm.jsx
 import React, { useState } from 'react';
-
+import { useContext } from 'react';
+import { GlobalContext } from '../../Context/GlobalContext';
 
 const AddQuestionForm = (props) => {
-    const [username, setUsername] = useState('');
+    const {authTokens} = useContext(GlobalContext);
+    const username = authTokens.username;
+    const setsubmit=props.setsubmit;
+    const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [image, setImage] = useState(null);
     const [flair, setFlair] = useState('general');
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const setIsOpen = props.setIsOpen
+    const setIsOpen = props.setIsOpen;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
     
         const formData = new FormData();
+        formData.append('title', title);
         formData.append('description', description);
         formData.append('flair', flair);
         formData.append('created_by', username); // Replace with dynamic username
@@ -32,7 +37,8 @@ const AddQuestionForm = (props) => {
             }
     
             const data = await response.json();
-            console.log(data.message); // Success message from the backend
+            setsubmit((prev) => prev + 1);
+
             setIsModalOpen(true); // Open the modal
         } catch (error) {
             alert(error.message); // Display error message
@@ -49,7 +55,18 @@ const AddQuestionForm = (props) => {
             </button>
             <h1 className="text-2xl text-center mb-6">Add a New Question</h1>
             <form onSubmit={handleSubmit}>
-               
+            <div className="mb-4">
+                    <label htmlFor="title" className="block text-lg font-medium mb-2">Title:</label>
+                    <input
+                        id="title"
+                        className="w-full p-3 border border-gray-300 rounded-lg"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                        
+                        placeholder="Provide Title"
+                        required
+                    />
+                </div>
 
                 <div className="mb-4">
                     <label htmlFor="description" className="block text-lg font-medium mb-2">Description:</label>
@@ -89,18 +106,7 @@ const AddQuestionForm = (props) => {
                     </select>
                 </div>
 
-                <div className="mb-4">
-                    <label htmlFor="username" className="block text-lg font-medium mb-2">Username:</label>
-                    <input
-                        type="text"
-                        id="username"
-                        className="w-full p-3 border border-gray-300 rounded-lg"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        required
-                    />
-                </div>
-
+                
                 <button type="submit" className="w-full py-3 bg-teal-500 text-white rounded-lg hover:bg-teal-600">Submit Question</button>
             </form>
 
