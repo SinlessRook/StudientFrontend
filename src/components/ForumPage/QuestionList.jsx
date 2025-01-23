@@ -4,10 +4,9 @@ import { faFilter, faSort } from '@fortawesome/free-solid-svg-icons';
 import Card from './Card';
 import QuestionDetails from './QuestionDetails';
 
-const QuestionList = () => {
+const QuestionList = ({ submit,flair }) => {
   const [questions, setQuestions] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
-  const [flair, setFlair] = useState('');
   const [sortField, setSortField] = useState('created_at');
   const [sortOrder, setSortOrder] = useState('asc');
   const [loading, setLoading] = useState(true);
@@ -41,7 +40,7 @@ const QuestionList = () => {
     };
 
     fetchQuestions();
-  }, [searchQuery, flair, sortField, sortOrder]);
+  }, [searchQuery, flair, sortField, sortOrder,submit]);
 
   return (
     <div className="p-8">
@@ -54,17 +53,7 @@ const QuestionList = () => {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
-        <select
-          className="px-4 py-2 rounded-lg border border-gray-900"
-          value={flair}
-          onChange={(e) => setFlair(e.target.value)}
-        >
-          <option value="">All Categories</option>
-          <option value="general">General</option>
-          <option value="technical">Technical</option>
-          <option value="help">Help</option>
-          <option value="exam">Exam</option>
-        </select>
+        
         <div className="flex gap-2 items-center">
           <button
             className="px-4 py-2 rounded-lg border border-gray-900"
